@@ -1,6 +1,8 @@
 package com.lchau;
 
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Encryptor {
 
@@ -67,17 +69,18 @@ public class Encryptor {
       return EMPTY_STRING;
     }
 
-    char[] wordArray = word.toCharArray();
-    char[] replacement = charsToReplace.toCharArray();
-    char[] result = wordArray.clone();
-    for (int i = 0; i < wordArray.length; i++) {
-      for (int j = 0; j < replacement.length; j++) {
-        if (replacement[j] == wordArray[i]) {
-          result[i] = shiftChar(wordArray[i]);
-        }
-      }
+    Map<Character, Character> map = new HashMap<>();
+    for (int i = 0; i < charsToReplace.length(); i++) {
+      char key = charsToReplace.charAt(i);
+      map.put(key, shiftChar(key));
     }
-    return String.valueOf(result);
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < word.length(); i++) {
+      char ch = word.charAt(i);
+      sb.append(map.getOrDefault(ch, ch));
+    }
+    return sb.toString();
   }
 
   public static String[] getWords(String sentence) {
