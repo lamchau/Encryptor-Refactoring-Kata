@@ -15,7 +15,7 @@ public enum Encryptor {
     if (sentence == null || sentence.isEmpty()) {
       return EMPTY_STRING;
     }
-    return buildString(sentence, Encryptor::shiftChar);
+    return buildString(sentence, Encryptor::encryptAsChar);
   }
 
   public static String cryptWord(String word) {
@@ -37,7 +37,7 @@ public enum Encryptor {
     Map<Character, Character> map = new HashMap<>();
     for (int i = 0; i < charsToReplace.length(); i++) {
       char key = charsToReplace.charAt(i);
-      map.put(key, shiftChar(key));
+      map.put(key, encryptAsChar(key));
     }
     return buildString(word, ch -> map.getOrDefault(ch, ch));
   }
@@ -46,7 +46,7 @@ public enum Encryptor {
     if (containsSpace(word)) {
       return EMPTY_STRING;
     }
-    return buildString(word, Encryptor::shiftValue);
+    return buildString(word, Encryptor::encryptAsInteger);
   }
 
   public static String[] getWords(String sentence) {
@@ -78,11 +78,11 @@ public enum Encryptor {
     return word == null || word.contains(" ");
   }
 
-  private static char shiftChar(char c) {
+  private static char encryptAsChar(char c) {
     return (char) (c + SHIFT_MODIFIER);
   }
 
-  private static String shiftValue(int value) {
+  private static String encryptAsInteger(int value) {
     return String.valueOf(value + SHIFT_MODIFIER);
   }
 }
