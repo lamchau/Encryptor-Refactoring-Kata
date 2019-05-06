@@ -1,4 +1,4 @@
-package encryptor;
+package com.lchau;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package encryptor;
+package com.lchau;
 
 import java.io.PrintStream;
 import java.security.InvalidParameterException;
