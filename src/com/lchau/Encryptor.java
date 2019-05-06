@@ -5,6 +5,7 @@ import java.io.PrintStream;
 public class Encryptor {
 
   private static final String EMPTY_STRING = "";
+  private static final int SHIFT_MODIFIER = 2;
 
   public static String cryptSentence(String sentence) {
     if (sentence == null || sentence.isEmpty()) {
@@ -14,7 +15,7 @@ public class Encryptor {
     String newWord = "";
     for (int i = 0; i < sentence.length(); i++) {
       int charValue = sentenceArray[i];
-      newWord += String.valueOf((char) (charValue + 2));
+      newWord += String.valueOf((char) (charValue + SHIFT_MODIFIER));
     }
 
     return newWord;
@@ -39,7 +40,7 @@ public class Encryptor {
     String newWord = "";
     for (int i = 0; i < word.length(); i++) {
       int charValue = wordArray[i];
-      newWord += String.valueOf((char) (charValue + 2));
+      newWord += String.valueOf((char) (charValue + SHIFT_MODIFIER));
     }
 
     return newWord;
@@ -54,7 +55,7 @@ public class Encryptor {
     String newWord = "";
     for (int i = 0; i < word.length(); i++) {
       int charValue = wordArray[i];
-      newWord += String.valueOf(charValue + 2);
+      newWord += String.valueOf(charValue + SHIFT_MODIFIER);
     }
 
     return newWord;
@@ -76,7 +77,7 @@ public class Encryptor {
       for (int j = 0; j < replacement.length; j++) {
         if (replacement[j] == wordArray[i]) {
           int charValue = wordArray[i];
-          result[i] = (char) (charValue + 2);
+          result[i] = (char) (charValue + SHIFT_MODIFIER);
         }
       }
     }
