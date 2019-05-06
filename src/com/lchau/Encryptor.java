@@ -14,8 +14,7 @@ public class Encryptor {
     char[] sentenceArray = sentence.toCharArray();
     String newWord = "";
     for (int i = 0; i < sentence.length(); i++) {
-      int charValue = sentenceArray[i];
-      newWord += String.valueOf((char) (charValue + SHIFT_MODIFIER));
+      newWord += shiftChar(sentenceArray[i]);
     }
 
     return newWord;
@@ -39,8 +38,7 @@ public class Encryptor {
     char[] wordArray = word.toCharArray();
     String newWord = "";
     for (int i = 0; i < word.length(); i++) {
-      int charValue = wordArray[i];
-      newWord += String.valueOf((char) (charValue + SHIFT_MODIFIER));
+      newWord += shiftChar(wordArray[i]);
     }
 
     return newWord;
@@ -54,8 +52,7 @@ public class Encryptor {
     char[] wordArray = word.toCharArray();
     String newWord = "";
     for (int i = 0; i < word.length(); i++) {
-      int charValue = wordArray[i];
-      newWord += String.valueOf(charValue + SHIFT_MODIFIER);
+      newWord += shiftValue(wordArray[i]);
     }
 
     return newWord;
@@ -76,8 +73,7 @@ public class Encryptor {
     for (int i = 0; i < wordArray.length; i++) {
       for (int j = 0; j < replacement.length; j++) {
         if (replacement[j] == wordArray[i]) {
-          int charValue = wordArray[i];
-          result[i] = (char) (charValue + SHIFT_MODIFIER);
+          result[i] = shiftChar(wordArray[i]);
         }
       }
     }
@@ -93,5 +89,13 @@ public class Encryptor {
 
   private static boolean containsSpace(String word) {
     return word == null || word.contains(" ");
+  }
+
+  private static char shiftChar(char c) {
+    return (char) (c + SHIFT_MODIFIER);
+  }
+
+  private static String shiftValue(int value) {
+    return String.valueOf(value + SHIFT_MODIFIER);
   }
 }
