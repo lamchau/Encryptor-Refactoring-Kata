@@ -19,10 +19,7 @@ public enum Encryptor {
   }
 
   public static String cryptWord(String word) {
-    if (containsSpace(word)) {
-      return EMPTY_STRING;
-    }
-    return buildString(word, Encryptor::shiftChar);
+    return cryptSentence(word);
   }
 
   public static String cryptWord(String word, String charsToReplace) {
