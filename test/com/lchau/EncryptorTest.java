@@ -9,79 +9,78 @@ public class EncryptorTest {
 
   @Test
   public void testCryptSentence() {
-    Assert.assertEquals(new Encryptor().cryptSentence("hello world!"), "jgnnq\"yqtnf#");
+    Assert.assertEquals(Encryptor.cryptSentence("hello world!"), "jgnnq\"yqtnf#");
   }
 
   @Test
   public void testCryptSentenceEmpty() {
-    Assert.assertEquals(new Encryptor().cryptSentence(""), "");
+    Assert.assertEquals(Encryptor.cryptSentence(""), "");
   }
 
   @Test
   public void testCryptSentenceNull() {
-    Assert.assertEquals(new Encryptor().cryptSentence(null), "");
+    Assert.assertEquals(Encryptor.cryptSentence(null), "");
   }
 
   @Test
   public void testCryptWord() {
-    Assert.assertEquals(new Encryptor().cryptWord("hello"), "jgnnq");
+    Assert.assertEquals(Encryptor.cryptWord("hello"), "jgnnq");
   }
 
   @Test
   public void testCryptWordSome() {
-    Assert.assertEquals(new Encryptor().cryptWord("hello", "eo"), "hgllq");
-    Assert.assertEquals(new Encryptor().cryptWord("hello", "ho"), "jellq");
+    Assert.assertEquals(Encryptor.cryptWord("hello", "eo"), "hgllq");
+    Assert.assertEquals(Encryptor.cryptWord("hello", "ho"), "jellq");
   }
 
   @Test
   public void testCryptWordAll() {
-    Assert.assertEquals(new Encryptor().cryptWord("hello", "hello"), "jgnnq");
+    Assert.assertEquals(Encryptor.cryptWord("hello", "hello"), "jgnnq");
   }
 
   @Test
   public void testCryptWordNull() {
-    Assert.assertEquals(new Encryptor().cryptWord(null), "");
+    Assert.assertEquals(Encryptor.cryptWord(null), "");
   }
 
   @Test
   public void testCryptWordNullWord() {
-    Assert.assertEquals(new Encryptor().cryptWord(null, "foo"), "");
+    Assert.assertEquals(Encryptor.cryptWord(null, "foo"), "");
   }
 
   @Test
   public void testCryptWordNullReplace() {
-    Assert.assertEquals(new Encryptor().cryptWord("hello", null), "");
+    Assert.assertEquals(Encryptor.cryptWord("hello", null), "");
   }
 
   @Test
   public void testCryptWordToNumbers() {
-    Assert.assertEquals(new Encryptor().cryptWordToNumbers("hello"), "106103110110113");
+    Assert.assertEquals(Encryptor.cryptWordToNumbers("hello"), "106103110110113");
   }
 
   @Test
   public void testCryptWordToEmpty() {
-    Assert.assertEquals(new Encryptor().cryptWordToNumbers(null), "");
+    Assert.assertEquals(Encryptor.cryptWordToNumbers(null), "");
   }
 
   @Test
   public void testGetWords() {
-    Assert
-        .assertArrayEquals(new Encryptor().getWords("hello world"), new String[]{"hello", "world"});
+    Assert.assertArrayEquals(Encryptor.getWords("hello world"), new String[] { "hello", "world"});
   }
 
   @Test
   public void testGetWordsEmpty() {
-    Assert.assertArrayEquals(new Encryptor().getWords(""), new String[0]);
+    Assert.assertArrayEquals(Encryptor.getWords(""), new String[0]);
   }
 
   @Test
   public void testGetWordsSpace() {
-    Assert.assertArrayEquals(new Encryptor().getWords(" "), new String[0]);
+    Assert.assertArrayEquals(Encryptor.getWords(" "), new String[0]);
   }
 
   @Test
   public void testGetWordsNull() {
-    Assert.assertArrayEquals(new Encryptor().getWords(null), new String[0]);
+    Assert.assertArrayEquals(Encryptor.getWords(null), new String[0]);
   }
 
   @Test
@@ -89,7 +88,7 @@ public class EncryptorTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     PrintStream stream = new PrintStream(outputStream);
 
-    new Encryptor().printWords("this is a test", stream);
+    Encryptor.printWords("this is a test", stream);
 
     String actual = new String(outputStream.toByteArray());
     String expected = ""
@@ -105,7 +104,7 @@ public class EncryptorTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     PrintStream stream = new PrintStream(outputStream);
 
-    new Encryptor().printWords(null, stream);
+    Encryptor.printWords(null, stream);
 
     String actual = new String(outputStream.toByteArray());
     String expected = "";
