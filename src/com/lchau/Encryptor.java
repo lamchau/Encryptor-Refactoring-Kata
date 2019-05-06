@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Encryptor {
-
+public enum Encryptor {
+  ;
+  
   private static final String EMPTY_STRING = "";
   private static final int SHIFT_MODIFIER = 2;
 
