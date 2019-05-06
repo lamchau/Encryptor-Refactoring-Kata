@@ -17,28 +17,11 @@ public class Encryptor {
     return buildString(sentence, Encryptor::shiftChar);
   }
 
-  public static void printWords(String sentence, PrintStream stream) {
-    if (sentence == null || stream == null) {
-      return;
-    }
-    String[] words = getWords(sentence);
-    for (String word : words) {
-      stream.println("<" + word + ">");
-    }
-  }
-
   public static String cryptWord(String word) {
     if (containsSpace(word)) {
       return EMPTY_STRING;
     }
     return buildString(word, Encryptor::shiftChar);
-  }
-
-  public static String cryptWordToNumbers(String word) {
-    if (containsSpace(word)) {
-      return EMPTY_STRING;
-    }
-    return buildString(word, Encryptor::shiftValue);
   }
 
   public static String cryptWord(String word, String charsToReplace) {
@@ -58,11 +41,28 @@ public class Encryptor {
     return buildString(word, ch -> map.getOrDefault(ch, ch));
   }
 
+  public static String cryptWordToNumbers(String word) {
+    if (containsSpace(word)) {
+      return EMPTY_STRING;
+    }
+    return buildString(word, Encryptor::shiftValue);
+  }
+
   public static String[] getWords(String sentence) {
     if (sentence == null || sentence.isEmpty()) {
       return new String[0];
     }
     return sentence.split(" ");
+  }
+
+  public static void printWords(String sentence, PrintStream stream) {
+    if (sentence == null || stream == null) {
+      return;
+    }
+    String[] words = getWords(sentence);
+    for (String word : words) {
+      stream.println("<" + word + ">");
+    }
   }
 
   private static String buildString(String str, Function<Character, Object> transform) {
