@@ -1,11 +1,15 @@
 package com.lchau;
 
 import java.io.PrintStream;
-import java.security.InvalidParameterException;
 
 public class Encryptor {
 
+  private static final String EMPTY_STRING = "";
+
   public static String cryptSentence(String sentence) {
+    if (sentence == null || sentence.isEmpty()) {
+      return EMPTY_STRING;
+    }
     char[] sentenceArray = sentence.toCharArray();
     String newWord = "";
     for (int i = 0; i < sentence.length(); i++) {
@@ -16,7 +20,10 @@ public class Encryptor {
     return newWord;
   }
 
-  public static  void printWords(String sentence, PrintStream stream) {
+  public static void printWords(String sentence, PrintStream stream) {
+    if (sentence == null || stream == null) {
+      return;
+    }
     String[] words = getWords(sentence);
     for (String word : words) {
       stream.println("<" + word + ">");
@@ -24,8 +31,8 @@ public class Encryptor {
   }
 
   public static String cryptWord(String word) {
-    if (word.contains(" ")) {
-      throw new InvalidParameterException();
+    if (containsSpace(word)) {
+      return EMPTY_STRING;
     }
 
     char[] wordArray = word.toCharArray();
@@ -39,8 +46,8 @@ public class Encryptor {
   }
 
   public static String cryptWordToNumbers(String word) {
-    if (word.contains(" ")) {
-      throw new InvalidParameterException();
+    if (containsSpace(word)) {
+      return EMPTY_STRING;
     }
 
     char[] wordArray = word.toCharArray();
@@ -54,8 +61,12 @@ public class Encryptor {
   }
 
   public static String cryptWord(String word, String charsToReplace) {
-    if (word.contains(" ")) {
-      throw new InvalidParameterException();
+    if (containsSpace(word)) {
+      return EMPTY_STRING;
+    }
+
+    if (charsToReplace == null || charsToReplace.isEmpty()) {
+      return EMPTY_STRING;
     }
 
     char[] wordArray = word.toCharArray();
@@ -73,8 +84,13 @@ public class Encryptor {
   }
 
   public static String[] getWords(String sentence) {
+    if (sentence == null || sentence.isEmpty()) {
+      return new String[0];
+    }
     return sentence.split(" ");
   }
 
-
+  private static boolean containsSpace(String word) {
+    return word == null || word.contains(" ");
+  }
 }
